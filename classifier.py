@@ -14,14 +14,12 @@ def classify_review(review_text, *, rng=None):
     if response["fault"]:
         print(f"  [Mock 불량 응답] {response['fault']}: {raw!r}")
 
-    # 코드펜스는 완전한 시작/종료 펜스가 있을 때 제거한다.
     if raw.startswith("```") and raw.endswith("```"):
         lines = raw.splitlines()
         if lines[0].strip().lower() in ("```", "```json") and lines[-1].strip() == "```":
             raw = "\n".join(lines[1:-1]).strip()
             print("  [복구] 코드펜스 제거")
 
-    # 사족과 잘린 JSON은 실패로 기록하며 프로그램을 계속 실행한다.
     try:
         data = json.loads(raw)
     except json.JSONDecodeError as error:

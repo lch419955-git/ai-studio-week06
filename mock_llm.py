@@ -1,4 +1,4 @@
-"""외부 API 없이 응답 처리 연습을 위한 Mock. 분류 정확도 평가용 모델이 아니다."""
+
 import json
 import random
 
